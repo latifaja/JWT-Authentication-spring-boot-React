@@ -16,12 +16,12 @@ public class MyUserDetailsService implements UserDetailsService {
     public MyUserDetailsService() {
 
         UserDetails user = User.withUsername("user")
-                .password("{noop}password")
+                .password("{noop}123456")
                 .roles("USER")
                 .build();
 
         UserDetails admin = User.withUsername("admin")
-                .password("{noop}admin123")
+                .password("{noop}123456")
                 .roles("ADMIN")
                 .build();
 
