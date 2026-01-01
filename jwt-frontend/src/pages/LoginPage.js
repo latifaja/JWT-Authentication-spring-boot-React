@@ -2,17 +2,24 @@ import { useState } from "react";
 
 
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
-export default function LoginPage({ onLogin }) {
+export default function LoginPage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
+        const navigate=useNavigate()
 
     const login = async (e) => {
+        //empêche le comportement par défaut du navigateur lors d’un événement.
+
+        //Comportement par défaut DE  Élément <form>	EST Recharge la page DONC ON PERD LE TOCKEN DE LA CONSOLE
+
         e.preventDefault();
         try {
             const res = await axios.post("api/auth/login", { username, password });
             console.log(res.data.token);
+            localStorage.setItem("jwt",res.data.token);
+            navigate("/home")
 
         } catch {
             console.log(e)
